@@ -38,7 +38,8 @@ window.selectnav = (function(){
       nested = typeof(o.nested) === "boolean" ? o.nested : true,
       indent = o.indent || "→",
       label = o.label || "- Navigation -",
-
+      activeIndex = o.activeIndex || 0,
+        
       // helper variables
       level = 0,
       selected = " selected ";
@@ -119,6 +120,11 @@ window.selectnav = (function(){
             isselected = link.href === document.URL ? selected : '';
           }
 
+          if( !isselected && i == activeIndex )
+          {
+            isselected = selected;
+          }
+          
           html += '<option value="' + link.href + '" ' + isselected + '>' + prefix + text +'</option>';
 
           if(nested){
